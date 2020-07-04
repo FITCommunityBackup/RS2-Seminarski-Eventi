@@ -164,7 +164,7 @@ namespace EventiApplication.WebAPI.Service
                 }
 
                 double slicnost = GetSlicnost(zajednickeOcjene1, zajednickeOcjene2);
-                if (slicnost > 0.8)
+                if (slicnost > 0.7)
                     preporuceniEventi.Add(_ctx.Event.Where(m => m.Id == e.Key).FirstOrDefault());
 
                 zajednickeOcjene1.Clear();
@@ -185,9 +185,9 @@ namespace EventiApplication.WebAPI.Service
 
             for (int i = 0; i < zajednickeOcjene1.Count; i++)
             {
-                brojnik = zajednickeOcjene1[i].OcjenaEventa * zajednickeOcjene2[i].OcjenaEventa;  //+= ?
-                nazivnik1 = zajednickeOcjene1[i].OcjenaEventa * zajednickeOcjene1[i].OcjenaEventa;  //+=
-                nazivnik2 = zajednickeOcjene2[i].OcjenaEventa * zajednickeOcjene1[i].OcjenaEventa;  //+=
+                brojnik += zajednickeOcjene1[i].OcjenaEventa * zajednickeOcjene2[i].OcjenaEventa;  //+= 
+                nazivnik1 += zajednickeOcjene1[i].OcjenaEventa * zajednickeOcjene1[i].OcjenaEventa;  //+=
+                nazivnik2 += zajednickeOcjene2[i].OcjenaEventa * zajednickeOcjene1[i].OcjenaEventa;  //+=
             }
             nazivnik1 = Math.Sqrt(nazivnik1);
             nazivnik2 = Math.Sqrt(nazivnik2);
